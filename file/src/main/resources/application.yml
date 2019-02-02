@@ -1,0 +1,60 @@
+########## default ##########
+spring:
+  profiles:
+    active: local
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+
+server:
+  port: 8080
+  context-path: /
+
+logging:
+  level:
+    com.dineug.file: off
+
+#jdlab config
+jdlab:
+  env: ${spring.profiles.active}
+  azure:
+    blob: 이름
+    key: DefaultEndpointsProtocol=https;AccountName=이름;AccountKey=키
+  
+
+########## test ##########
+---
+spring:
+  profiles: test
+
+logging:
+  level:
+    com.dineug.file: debug
+
+
+########## localhost ##########
+---
+spring:
+  profiles: local
+
+logging:
+  level:
+    com.dineug.file: debug
+
+
+########## development ##########
+---
+spring:
+  profiles: dev
+
+logging:
+  level:
+    com.dineug.file: debug
+
+
+########## production ##########
+---
+spring:
+  profiles: prod
+  
