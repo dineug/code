@@ -99,7 +99,7 @@ public class FileAzure extends FileBase {
 
         // 내부 업로드 처리
         this.uploadData(file);
-        async.uploadProcess(file, isImageResize);
+        async.uploadProcessAzure(file, isImageResize);
         return new FileUtil(file.fileData);
     }
 

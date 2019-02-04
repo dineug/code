@@ -15,8 +15,8 @@ logging:
   level:
     com.dineug.file: off
 
-#jdlab config
-jdlab:
+#dineug config
+dineug:
   env: ${spring.profiles.active}
   azure:
     blob: 이름

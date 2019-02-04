@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 @Getter
 public class ConfigComponent {
 
-    @Value("${jdlab.env}")
+    @Value("${dineug.env}")
     private String env;
 
-    @Value("${jdlab.azure.blob}")
+    @Value("${dineug.azure.blob}")
     private String azureBlob;
 
-    @Value("${jdlab.azure.key}")
+    @Value("${dineug.azure.key}")
     private String azureKey;
 
     public ENV getEnv() {

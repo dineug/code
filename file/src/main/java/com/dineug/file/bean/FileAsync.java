@@ -23,7 +23,7 @@ public class FileAsync extends FileBase {
      * @param file
      */
     @Async
-    public void uploadProcess(FileVO file, boolean isImageResize) {
+    public void uploadProcessAzure(FileVO file, boolean isImageResize) {
         fileAzure.uploadProcess(file, isImageResize);
     }
 
