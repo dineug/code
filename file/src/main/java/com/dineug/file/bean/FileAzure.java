@@ -7,15 +7,12 @@ import com.microsoft.azure.storage.StorageException;
 import com.microsoft.azure.storage.blob.CloudBlobClient;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -35,22 +32,21 @@ import java.text.SimpleDateFormat;
  * @version 2019.01.31 v1
  */
 @Component
+@Log4j2
 public class FileAzure extends FileBase {
-
-    private static final Logger logger = LoggerFactory.getLogger(FileAzure.class);
 
     private CloudBlobContainer container;
     private String containerUri;
 
-    @Autowired
     private ConfigComponent config;
-    @Autowired
     private FileAsync async;
 
-    @PostConstruct
-    private void init() throws InvalidKeyException, URISyntaxException, StorageException {
+    public FileAzure(ConfigComponent config, FileAsync async) throws InvalidKeyException, URISyntaxException, StorageException {
+        this.config = config;
+        this.async = async;
+        async.init(this);
         // azure container connection
-        logger.debug("azure container connection");
+        log.debug("azure container connection");
         CloudStorageAccount account = CloudStorageAccount.parse(config.getAzureKey());
         CloudBlobClient serviceClient = account.createCloudBlobClient();
         container = serviceClient.getContainerReference(config.getAzureBlob());

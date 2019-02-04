@@ -1,6 +1,5 @@
 package com.dineug.file.bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class FileAsync extends FileBase {
 
-    @Autowired
     private FileAzure fileAzure;
+    protected void init(FileAzure fileAzure) {
+        this.fileAzure = fileAzure;
+    }
 
     /**
      * 비동기 파일 업로드

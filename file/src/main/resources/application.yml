@@ -2,14 +2,14 @@
 spring:
   profiles:
     active: local
-  http:
+  servlet:
     multipart:
       max-file-size: 20MB
       max-request-size: 100MB
 
 server:
-  port: 8080
-  context-path: /
+  servlet:
+    context-path: /
 
 logging:
   level:
