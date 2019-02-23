@@ -185,9 +185,7 @@ public class FileAzure extends FileBase {
      */
     @Override
     public boolean delete(String filePath, String saveName) {
-        // 잘쓰지 않아서 기억나지 않지만 아마 containerUri 이후 path 인걸로 기억함
-        // 테스트해봐야됨 지금은 안쓰기때문에 패스
-        filePath = filePath.replaceAll(containerUri, "");
+        filePath = filePath.replaceAll(containerUri+"/", "");
         return deleteProcessAzure(filePath + "/" + saveName);
     }
 
